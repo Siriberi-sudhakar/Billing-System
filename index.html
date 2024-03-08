@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- sweet alert library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
+  
 <title>Billing System</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
@@ -324,6 +328,7 @@
 
    // Function to redirect to admin page
    function redirectToAdminPage() {
+     swal("Good job!", "Now Your Going To Admin Page!", "success");
     // Redirect to admin.html
     window.location.href = "admin.html";
   }
@@ -441,6 +446,7 @@
   }
 
   function printInvoice() {
+    swal("Good job!", "Ready To Print Invoice!", "success");
     const currentDate = new Date().toLocaleDateString();
     document.getElementById('invoiceDate').textContent = currentDate;
     
