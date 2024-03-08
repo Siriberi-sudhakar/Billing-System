@@ -281,7 +281,7 @@
   </div>
 
   <div class="thank-you-message">Thank you for coming to our shop and we hope you will come again!</div>
-  <br><h6 class="esign">proprietor sign <br> <span style="font-family: cursive;">s.sudhakar</span></h6>
+  <br><h6 class="esign">proprietor sign <br> <span style="font-family: cursive;">S.sudhakar</span></h6>
 </div>
 
 <script>
@@ -448,21 +448,6 @@
     // Hide printable section after printing
     document.getElementById('print-section').style.display = 'none';
 
-
-
-    // Scroll to the top of the printable section
-    document.getElementById('print-section').scrollIntoView();
-
-    // Introduce a slight delay before printing (adjust as needed)
-    setTimeout(() => {
-        window.print();
-        // Hide printable section after printing
-        document.getElementById('print-section').style.display = 'none';
-    }, 500); // Adjust the delay time as needed
-
-
-
-    
   }
 
   // Function to update itemList in localStorage
@@ -471,16 +456,7 @@
   }
 
 
-  // Generate PDF using jsPDF
-  const pdf = new jsPDF();
-  const printSection = document.getElementById('print-section');
-  pdf.html(printSection, {
-    callback: function () {
-      pdf.save('invoice.pdf');
-      // Hide printable section after printing
-      document.getElementById('print-section').style.display = 'none';
-    }
-  });
+  
 
 
 </script>
