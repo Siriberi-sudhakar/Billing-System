@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kirana Store Billing</title>
+<title>Billing System</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
   /* Add custom CSS styles here */
@@ -116,8 +116,8 @@
 
     }
     .admin-button{
-      position: absolute;
-      right: -150px;
+      position: relative;
+      right: 150px;
     }
   }
   /* Thermal bill styles */
@@ -169,7 +169,8 @@
   }
   .admin-button{
     position: absolute;
-    right: 100px;
+    right: 15px;
+    top: 70px;
   }
  .esign{
   position: absolute;
@@ -452,6 +453,20 @@
   function updateItemListInStorage() {
     localStorage.setItem('itemList', JSON.stringify(itemList));
   }
+
+
+  // Generate PDF using jsPDF
+  const pdf = new jsPDF();
+  const printSection = document.getElementById('print-section');
+  pdf.html(printSection, {
+    callback: function () {
+      pdf.save('invoice.pdf');
+      // Hide printable section after printing
+      document.getElementById('print-section').style.display = 'none';
+    }
+  });
+
+
 </script>
 </body>
 </html>
