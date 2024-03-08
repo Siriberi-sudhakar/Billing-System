@@ -447,6 +447,22 @@
 
     // Hide printable section after printing
     document.getElementById('print-section').style.display = 'none';
+
+
+
+    // Scroll to the top of the printable section
+    document.getElementById('print-section').scrollIntoView();
+
+    // Introduce a slight delay before printing (adjust as needed)
+    setTimeout(() => {
+        window.print();
+        // Hide printable section after printing
+        document.getElementById('print-section').style.display = 'none';
+    }, 500); // Adjust the delay time as needed
+
+
+
+    
   }
 
   // Function to update itemList in localStorage
