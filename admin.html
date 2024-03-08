@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Page</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+  <h1 style="text-align: center;">Admin Page</h1> <br> <br>
+  <!-- Add new item form -->
+  <form id="addItemForm" onsubmit="addItem(); return false;">
+    <div class="form-group">
+     <h3>Add New Item</h3>
+     <hr>
+      <!--label for="itemName">Item Name:</label-->
+      <input type="text" placeholder="Enter Item Name" class="form-control" id="itemName" required>
+    </div>
+    <div class="form-group">
+      <!--label for="itemPrice">Item Price:</label-->
+      <input type="number" placeholder="Enter Item Price" class="form-control" id="itemPrice" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Item</button>
+  </form>
+  <hr>
+  <!-- Remove item form -->
+  <form id="removeItemForm" onsubmit="removeItem(); return false;">
+    <div class="form-group">
+      <h3>Delete Item</h3>
+      <hr>
+      <!--label for="removeItemName">Item Name:</label-->
+      <input type="text" placeholder="Enter Item Name To Delete" class="form-control" id="removeItemName" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Remove Item</button>
+  </form>
+  <hr>
+  <a href="index.html" class="btn btn-primary">Back to home Page</a> <!-- Link to go back to the index page -->
+</div>
+
+<script>
+  let itemList = JSON.parse(localStorage.getItem('itemList')) || [];
+
+  function addItem() {
+    const itemName = document.getElementById('itemName').value.trim();
+    const itemPrice = parseFloat(document.getElementById('itemPrice').value.trim());
+    if (itemName && itemPrice > 0) {
+      itemList.push({ name: itemName, price: itemPrice });
+      updateItemListInStorage();
+      alert("item added")
+    }
+    document.getElementById('itemName').value = '';
+    document.getElementById('itemPrice').value = '';
+  }
+
+  function removeItem() {
+    const itemName = document.getElementById('removeItemName').value.trim();
+    if (itemName) {
+      itemList = itemList.filter(item => item.name !== itemName);
+      updateItemListInStorage();
+      alert("item deleted")
+    }
+    document.getElementById('removeItemName').value = '';
+  }
+
+  // Function to update itemList in localStorage
+  function updateItemListInStorage() {
+    localStorage.setItem('itemList', JSON.stringify(itemList));
+  }
+</script>
+</body>
+</html>
