@@ -125,6 +125,40 @@
     body * {
       visibility: hidden;
     }
+    
+
+
+    /* Hide non-printable elements */
+    body {
+      display: block !important;
+      position: relative !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      min-width: auto !important;
+      overflow: visible !important;
+      visibility: visible !important;
+      background-color: white !important;
+    }
+
+    /* Adjust styles for printing */
+    .container {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+      position: relative !important;
+      overflow: visible !important;
+    }
+
+
+
+
+
+
+
+
+    
     #print-section, #print-section * {
       visibility: visible;
     }
