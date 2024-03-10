@@ -55,7 +55,7 @@
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 20px;
-    width: calc(50% - 15px); /* Two items per row by default */
+    width: calc(50% - 20px); /* Two items per row by default */
   }
   .product-item:hover {
     border: 2px solid #0664f0;
@@ -71,7 +71,7 @@
     scroll-behavior: smooth;
     border: 3px solid #ccc;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 20px;
   }
   /* Table styles */
@@ -244,9 +244,9 @@
   }
 
   .item-image {
-    width: 120px; /* Adjust width to fill the container */
-    height: 150px; /* Maintain aspect ratio */
-    margin-right: 0; /* Remove right margin */
+    width: 110px; /* Adjust width to fill the container */
+    height: 120px; /* Maintain aspect ratio */
+    margin-right: 20px; /* Remove right margin */
     margin-bottom: 10px; /* Add bottom margin for spacing */
     border-radius: 5%; /* Remove border-radius */
   }
@@ -416,7 +416,7 @@
           <div>Price: ₹${item.price}</div>
         </div>
       </div>
-        <button onclick="selectItem('${item.name}')" class="btn btn-success" style="width: 8rem; height: 3rem; border-radius: 8px;">Add Item</button>
+        <button onclick="selectItem('${item.name}')" class="btn btn-success" border-radius: 8px;">Add Item</button>
       `;
       searchResultsDiv.appendChild(itemDiv);
     });
