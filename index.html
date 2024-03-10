@@ -13,6 +13,10 @@
   /* Add custom CSS styles here */
 
 
+  body {
+    overflow-x: hidden; /* Disable horizontal scrolling */
+  }
+
   input[type="radio"] {
     display: none;
   }
@@ -51,7 +55,7 @@
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 20px;
-    width: calc(50% - 20px); /* Two items per row by default */
+    width: calc(50% - 15px); /* Two items per row by default */
   }
   .product-item:hover {
     border: 2px solid #0664f0;
@@ -61,11 +65,13 @@
     font-size: large;
   }
   .search-results-container {
-    max-height: 300px;
+    max-height: 450px;
     overflow-y: auto;
-    border: 1px solid #ccc;
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+    scroll-behavior: smooth;
+    border: 3px solid #ccc;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     margin-bottom: 20px;
   }
   /* Table styles */
@@ -86,7 +92,7 @@
     background-color: #dc3545;
     color: white;
     border: none;
-    padding: 6px 10px;
+    padding: 5px 8px;
     border-radius: 5px;
     cursor: pointer;
   }
@@ -124,13 +130,13 @@
       right: 150px;
     }
   }
+  
   /* Thermal bill styles */
   @media print {
     body * {
       visibility: hidden;
     }
-    
-
+   
 
     /* Hide non-printable elements */
     body {
@@ -139,9 +145,9 @@
       margin: 0 !important;
       padding: 0 !important;
       min-width: auto !important;
-      overflow: visible !important;
+      overflow: hidden !important;
       visibility: visible !important;
-      background-color: white !important;
+      background-color: rgb(255, 255, 255) !important;
     }
 
     /* Adjust styles for printing */
@@ -215,14 +221,46 @@
   right: 100px;
  }
   
+
+
+
+
+
+
+
+ .item-image {
+  width: 180px;
+  height: 150px;
+  border-radius: 5%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 767px) {
+  .item-info {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start of the container */
+  }
+
+  .item-image {
+    width: 120px; /* Adjust width to fill the container */
+    height: 150px; /* Maintain aspect ratio */
+    margin-right: 0; /* Remove right margin */
+    margin-bottom: 10px; /* Add bottom margin for spacing */
+    border-radius: 5%; /* Remove border-radius */
+  }
+}
+
+
 </style>
 </head>
-<body>
+<body onload="searchItems()"> 
 
 <div class="container">
   <h1 style="text-align: center;">Billing System</h1> <br> <br>
   <button onclick="redirectToAdminPage()" class="btn btn-primary admin-button">Admin Page</button>
-  <br> <input type="text" id="searchInput" onkeyup="searchItems()" class="form-control" placeholder="Search items with keyword... " style="width: 20rem;"> <br> <br>
+  <br> <input type="text" id="searchInput" onkeyup="searchItems()" class="form-control" placeholder="Search items with keyword... " style="width: 20rem; border: 2px solid black;" > <br> <br>
   <h3>List Of Items</h3>
 
   <div class="search-results-container">
@@ -266,10 +304,9 @@
   <hr>
 
   <button onclick="printInvoice()" class="btn btn-primary">Print Invoice</button>
-</div> <br> <br>
+</div>
 
-<div class="container" id="print-section">  
-  <br><br><br> <br> <br>
+<div class="container" id="print-section"> <br> <br>
   <div class="company-name">Tea Time (Yernagudem-Franch.)<br><span style="font-size: xx-large; font-weight: lighter;">It is always tea time.</span></div>
   <div class="invoice-details">
     Mobile: <span>9505641252 , 7095849402</span><br>
@@ -312,7 +349,7 @@
 
   <hr style="border: 1px solid rgb(148, 140, 140);">
 
-
+    <!--img src="images/Ginger Lemon Tea.png" alt=""-->
   <div class="total-section" id="balanceSectionPrint">
     <label for="balancePrint">The petty cash you get :</label>
     <span id="balancePrint"></span>
@@ -336,18 +373,18 @@
 
 
   const itemList = [
-    { name: 'Dum Tea', price: 15 },
-    { name: 'Ginger Tea', price: 20 },
-    { name: 'Lemon Tea', price: 20 },
-    { name: 'Ginger Lemon Tea', price: 20 },
-    { name: 'Black Tea', price: 20 },
-    { name: 'Masala Tea', price: 20 },
-    { name: 'Bellam Pepper Tea', price: 20 },
-    { name: 'Coffe', price: 20 },
-    { name: 'Badam Milk', price: 25 },
-    { name: 'Kashmiri Tea', price: 25 },
-    { name: 'Kullad Tea', price: 25 },
-    { name: 'Green Tea', price: 25 },
+    { name: 'Dum Tea', price: 15, image: 'images/dum tea.png' },
+    { name: 'Ginger Tea', price: 20, image: 'images/Ginger Tea.jpeg' },
+    { name: 'Lemon Tea', price: 20, image: 'images/lemon tea.jpg' },
+    { name: 'Ginger Lemon Tea', price: 20, image: 'images/Ginger Lemon Tea.png' },
+    { name: 'Black Tea', price: 20, image: 'images/Black Tea.png' },
+    { name: 'Masala Tea', price: 20, image: 'images/Masala Tea.png' },
+    { name: 'Bellam Pepper Tea', price: 20, image: 'images/Bellam Pepper Tea.jpg' },
+    { name: 'Coffe', price: 20, image: 'images/Coffe.jpg' },
+    { name: 'Badam Milk', price: 25, image: 'images/Badam Milk.jpeg' },
+    { name: 'Kashmiri Tea', price: 25, image: 'images/Kashmiri Tea.jpeg'},
+    { name: 'Kullad Tea', price: 25, image: 'images/Kullad Tea.jpg'},
+    { name: 'Green Tea', price: 25, image: 'images/Green Tea1.jpg'},
     // Add more items as needed
   ];
 
@@ -372,9 +409,14 @@
       const itemDiv = document.createElement('div');
       itemDiv.classList.add('product-item');
       itemDiv.innerHTML = `
-        <div class="product-name">${item.name}</div>
-        <div>Price: ₹${item.price}</div>
-        <button onclick="selectItem('${item.name}')" class="btn btn-success">Add Item</button>
+      <div class="item-info">
+        ${item.image ? `<img src="${item.image}" alt="${item.name}" class="item-image">` : ''}
+        <div>
+          <div class="product-name">${item.name}</div>
+          <div>Price: ₹${item.price}</div>
+        </div>
+      </div>
+        <button onclick="selectItem('${item.name}')" class="btn btn-success" style="width: 8rem; height: 3rem; border-radius: 8px;">Add Item</button>
       `;
       searchResultsDiv.appendChild(itemDiv);
     });
@@ -446,7 +488,7 @@
   }
 
   function printInvoice() {
-    swal("Good job!", "Ready To Print Invoice!", "success");
+    swal("Printing Invoice!", "Ready To Print Invoice!", "success");
     const currentDate = new Date().toLocaleDateString();
     document.getElementById('invoiceDate').textContent = currentDate;
     
