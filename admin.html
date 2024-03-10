@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Page</title>
+
 <!-- sweet alert library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
-  
-<title>Admin Page</title>
+
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -25,6 +28,11 @@
     <div class="form-group">
       <!--label for="itemPrice">Item Price:</label-->
       <input type="number" placeholder="Enter Item Price" class="form-control" id="itemPrice" required>
+    </div>
+    <!-- Include input field for image upload -->
+    <div class="form-group">
+      <label for="itemImage">Item Image:</label>
+      <input type="file" id="itemImage" accept="image/*">
     </div>
     <button type="submit" class="btn btn-primary">Add Item</button>
   </form>
@@ -49,21 +57,38 @@
   function addItem() {
     const itemName = document.getElementById('itemName').value.trim();
     const itemPrice = parseFloat(document.getElementById('itemPrice').value.trim());
-    if (itemName && itemPrice > 0) {
-      itemList.push({ name: itemName, price: itemPrice });
-      updateItemListInStorage();
-      swal("Alert", "Item Is Added Successfully!", " success");
+    const fileInput = document.getElementById('itemImage');
+    
+    // Check if an image is selected
+    if (fileInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const itemImageDataUrl = event.target.result;
+            
+            // Add the item with image to itemList
+            itemList.push({ name: itemName, price: itemPrice, image: itemImageDataUrl });
+            updateItemListInStorage();
+            swal("Item Added", "Item added successfully!", "success");
+        }
+        
+        // Read the selected image file as data URL
+        reader.readAsDataURL(fileInput.files[0]);
+    } else {
+      swal("Select Image", "Please select an image for the item!", "error");
     }
+    
     document.getElementById('itemName').value = '';
     document.getElementById('itemPrice').value = '';
-  }
+}
 
   function removeItem() {
     const itemName = document.getElementById('removeItemName').value.trim();
     if (itemName) {
       itemList = itemList.filter(item => item.name !== itemName);
       updateItemListInStorage();
-      swal("Alert!", "Item Is Deleted Successful!", "success");
+      swal("Deleted", "Item deleted successfully!", "success");
+    } else {
+      swal("Enter Name", "Please enter an item name to delete!", "error");
     }
     document.getElementById('removeItemName').value = '';
   }
