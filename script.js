@@ -40,7 +40,7 @@ window.onscroll = () =>
      const itemList = [
        { name: 'Dum Tea', price: 15, image: 'images/dum tea.png' },
        { name: 'Ginger Tea', price: 20, image: 'images/Ginger Tea.jpeg' },
-       { name: 'Lemon Tea', price: 20, image: 'images/Lemon Tea.jpg' },
+       { name: 'Lemon Tea', price: 20, image: 'images/Lemon Tea1.jpg' },
        { name: 'Ginger Lemon Tea', price: 20, image: 'images/Ginger Lemon Tea.png' },
        { name: 'Black Tea', price: 20, image: 'images/Black Tea.png' },
        { name: 'Masala Tea', price: 20, image: 'images/Masala Tea.png' },
